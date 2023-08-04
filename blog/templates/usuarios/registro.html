@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block contenido%}
+<h1>Registro</h1>
+<h1> Para acceder a las noticias debe registrarse</h1>
+<div class = "contenedor-noticias">
+<form action="" method="post">{% csrf_token %}
+    <table>
+    {{ form.as_table }}
+    </table>
+    <input type="submit" class="btn btn-outline-secondary">
+</form>
+</div>
+{% endblock contenido%}

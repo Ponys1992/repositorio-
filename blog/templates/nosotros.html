@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{%  load static %}
+
+{%block titulo %} Noosotros {% endblock titulo %}
+
+{% block contenido%}
+
+<h1> "Nosotros"</h1>
+<div>
+<img src="{% static 'img/nosotros.jpeg'%}" alt="error" height="400">
+</div>
+<div class="contenedor-noticias">
+<h2>{{saludo}}</h2>
+<p>{{nombre}}</p>
+<h2>{{autor}}</h2>
+ </div>
+{% endblock contenido%}

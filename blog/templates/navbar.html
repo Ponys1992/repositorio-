@@ -1,0 +1,45 @@
+<header class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom">
+       <div class="col-md-3 mb-2 mb-md-0">
+            <a href="/" class="d-inline-flex link-body-emphasis text-decoration-none">
+            <svg class="bi" width="40" height="32" role="img" aria-label="Bootstrap">
+                 <use xlink:href="#bootstrap"></use>
+            </svg>
+          </a>
+       </div>
+      <div>
+      <nav class="navbar bg-body-tertiary fixed-top">       
+          <a class="navbar-brand" href="#">Blog El Economista</a>
+          <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
+            <li><a href="{% url 'home' %}" class="nav-link px-2 link-secondary">Inicio</a></li>
+            <li><a href="{% url 'noticias:inicio' %}" class="nav-link px-2">Noticias</a></li>
+            <li><a href="{% url 'nosotros' %}" class="nav-link px-2">Nosotros</a></li>
+            <li><a href="{% url 'noticias:contacto' %}" class="nav-link px-2">Contacto</a></li>
+            <li><a href="http://localhost:8000/admin" class="nav-link px-2">Publicar</a></li>
+          </ul>
+          <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+            <div class="offcanvas-header">
+              <h5 class="offcanvas-title" id="offcanvasNavbarLabel">EL Economista</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+            </div>
+            <div class="offcanvas-body">
+              <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+                {% if user.is_authenticated %}
+                Bienvenido {{ user.username }}
+                <button type="button" class="btn btn-primary"><a class="nav-link" href="{% url 'logout' %}">Cerrar
+                        sesion</a></button>
+                {% else %}
+                <button type="button" class="btn btn-outline-primary me-2"><a class="nav-link" href="{% url 'login' %}"> iniciar
+                        sesion</a></button>
+                <button type="button" class="btn btn-outline-primary me-2"><a class="nav-link"
+                        href="{% url 'usuarios:registro' %}">Registrar</a></button>
+                {% endif %}
+              </ul>            
+            </div>
+          </div>
+      </nav> 
+    </div>
+    
+</header>

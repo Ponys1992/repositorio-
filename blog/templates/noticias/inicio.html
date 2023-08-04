@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{%  load static %}
+
+{%block titulo %} noticias {% endblock titulo %}
+
+{% block contenido%}
+<h1 class="contenedor">Noticias</h1>
+
+<a href="{% url 'noticias:inicio'%}">Todas</a>
+
+{% for c in categorias %}
+
+ <a href="?id={{c.pk}}">{{c.nombre}}</a> 
+
+{% endfor %}
+<a href="{% url 'noticias:ordenar' %}">Mas Recientes</a>
+<a href="{% url 'noticias:antiguos' %}">Mas Antiguos</a>
+<a href="{% url 'noticias:listar' %}">Ordenar A-Z</a>
+<a href="{% url 'noticias:listarza' %}">Ordenar Z-A</a>
+
+
+{% for noticia in noticias %}
+<div class="contenedor-noticias "> 
+<h2 class="titulo-noticia"><a href="{% url 'noticias:detalle' noticia.pk %}"> <strong>{{ noticia.titulo }}</strong></a></h2>
+<p class="contenido-noticia">{{ noticia.cuerpo }}</p>
+<p>categoria: {{ noticia.categoria_noticia}}</p>
+<p class="fecha-publicacion">{{noticia.fecha}}</p>
+<img src="{{ noticia.imagen.url }}" alt=""  width="300px">
+</div>
+{%  endfor %}
+{% endblock contenido%}
+

@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{%  load static %}
+
+{%block titulo %} login{% endblock titulo %}
+
+{% block contenido%}
+<p>Para acceder a las Noticias primero se debe registar</p>
+
+<form method="POST">{% csrf_token %} 
+    {{ form.errors}}
+    <input type="text" name= "username" placeholder="usuario">
+    <input type ="password" name ="password" placeholder="contraseña">
+    <input type = "submit" value="Enviar">
+</form>
+
+{% endblock contenido%}

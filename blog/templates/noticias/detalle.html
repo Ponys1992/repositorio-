@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{%  load static %}
+
+{%block titulo %} Noticia{% endblock titulo %}
+
+{% block contenido%}
+<h1>{{noticia}}</h1>
+<img src="{{noticia.imagen.url}}" alt="" width="300px">
+<p>{{noticia.cuerpo}}</p>
+<p>{{noticia.fecha}}</p>
+<p>{{noticia.categoria_noticia}}</p>
+
+
+<form action="{% url 'noticias:comentar' %}" method="post">{% csrf_token %}
+
+    <textarea name="comentario" cols="30" rows="3"></textarea>
+    <input type="text" name="id_noticia" value="{{ noticia.pk }}" hidden=""><br>
+    <input type="submit" value = "Comentar" class="btn btn-outline-secondary">
+
+
+</form>
+<h3>Comentarios</h3>
+<div class="contenedor-noticias">
+{% for c in noticia.MisComentarios %}
+<p>{{c.texto}}</p>
+<p class="usuario">{{c.usuario}}</p>
+<a href="{% url 'noticias:borrar_comentario' c.pk %}" class="btn btn-outline-secondary">Eliminar</a>
+<a href="{% url 'noticias:modificar_comentario' c.pk %}" class="btn btn-outline-secondary">Modificar</a>
+{% endfor %}
+</div>
+{% endblock contenido%}
